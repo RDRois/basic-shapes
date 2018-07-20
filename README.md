@@ -155,14 +155,6 @@ The three items that should appear in the `basic-shapes` directory are:
 * retrained_labels.txt
 If the script seemed to have run smoothly, yet these items did not appear, it is possible that there was directory mishap when executing the python command when running the script.
 
-## Label image with retrained model
-This last part is about taking the retrained model and applying it to a new image.
-<p align="center">
-<img src="https://github.com/RDRois/basic-shapes/blob/master/ball.jpg" width="600px" >
-</p>
-```
-root@5c70540022ff:~# python /basic-shapes/label_image.py --graph=/basic-shapes/retrained_graph.pb --labels=/basic-shapes/retrained_labels.txt --output_layer=final_result --image=/basic-shapes/ball.jpg --input_layer=Placeholder
-```
 
 The output starts with looking for each category, then initialized InceptionV3.
 The major actions taken by the script are:
@@ -203,10 +195,15 @@ INFO:tensorflow:Froze 378 variables.
 INFO:tensorflow:Converted 378 variables to const ops.
 ```
 
-## Test retrained model on new image
+## Label image with retrained model
+This last part is about taking the retrained model and applying it to a new image.
 The test image is already included in the `basic-shapes` directory.
 Run the `label_image.py` script.
+
 #### Results: ball.jpg
+<p align="center">
+<img src="https://github.com/RDRois/basic-shapes/blob/master/ball.jpg" width="300px" >
+</p>
 ```
 root@5c70540022ff:~# python /basic-shapes/label_image.py --graph=/basic-shapes/retrained_graph.pb --labels=/basic-shapes/retrained_labels.txt --output_layer=final_result --image=/basic-shapes/ball.jpg --input_layer=Placeholder
 ```
@@ -218,6 +215,9 @@ cylinder 0.045302395
 pyramid 0.039126154
 ```
 ### Results: luxor.jpg
+<p align="center">
+<img src="https://github.com/RDRois/basic-shapes/blob/master/luxor.jpg" width="300px" >
+</p>
 ```
 root@5c70540022ff:~# python /basic-shapes/label_image.py --graph=/basic-shapes/retrained_graph.pb --labels=/basic-shapes/retrained_labels.txt --output_layer=final_result --image=/basic-shapes/luxor.jpg --input_layer=Placeholder
 ```
@@ -229,6 +229,9 @@ sphere 0.05765312
 rectangular prism 0.02946632
 ```
 #### Results: rubrix.jpg
+<p align="center">
+<img src="https://github.com/RDRois/basic-shapes/blob/master/rubrix.jpg" width="300px" >
+</p>
 ```
 root@a24f979cd6ab:/# python /basic-shapes/label_image.py --graph=/basic-shapes/retrained_graph.pb --labels=/basic-shapes/retrained_labels.txt --output_layer=final_result --image=/basic-shapes/rubrix.jpg --input_layer=Placeholder
 ```
