@@ -164,18 +164,87 @@ This last part is about taking the retrained model and applying it to a new imag
 root@5c70540022ff:~# python /basic-shapes/label_image.py --graph=/basic-shapes/retrained_graph.pb --labels=/basic-shapes/retrained_labels.txt --output_layer=final_result --image=/basic-shapes/ball.jpg --input_layer=Placeholder
 ```
 
-The output should look something like this.
-```
+The output starts with looking for each category, then initialized InceptionV3.
+The major actions taken by the script are:
+* Searches for each category used for classification.
+* Initializes InceptionV3 for each category.
+* Creates bottlenecks cache files.
+* Training accuracy, cross entropy, and validation accury are calculated over 500 steps.
+* Reinitializes InceptionV3.
+With the current setup, the script takes about 46 minutes.
 
 ```
+INFO:tensorflow:Looking for images in 'cone'
+INFO:tensorflow:Looking for images in 'cube'
+INFO:tensorflow:Looking for images in 'cylinder'
+INFO:tensorflow:Looking for images in 'pyramid'
+INFO:tensorflow:Looking for images in 'rectangular_prism'
+INFO:tensorflow:Looking for images in 'sphere'
+INFO:tensorflow:Using /tmp/tfhub_modules to cache modules.
+INFO:tensorflow:Downloading TF-Hub Module 'https://tfhub.dev/google/imagenet/inception_v3/feature_vector/1'.
+INFO:tensorflow:Downloaded TF-Hub Module 'https://tfhub.dev/google/imagenet/inception_v3/feature_vector/1'.
+...
+INFO:tensorflow:Initialize variable module/InceptionV3/...
+...
+INFO:tensorflow:Creating bottleneck at /basic-shapes/bottlenecks/...
+...
+INFO:tensorflow:2018-07-20 06:53:15.987792: Step 0: Train accuracy = 43.0%
+INFO:tensorflow:2018-07-20 06:53:15.989958: Step 0: Cross entropy = 1.735130
+INFO:tensorflow:2018-07-20 06:53:17.013777: Step 0: Validation accuracy = 40.0% (N=100)
+...
+INFO:tensorflow:2018-07-20 06:55:44.356776: Step 499: Train accuracy = 75.0%
+INFO:tensorflow:2018-07-20 06:55:44.358384: Step 499: Cross entropy = 0.755962
+INFO:tensorflow:2018-07-20 06:55:44.620337: Step 499: Validation accuracy = 71.0% (N=100)
+...
+INFO:tensorflow:Initialize variable module/InceptionV3/...
+...
+INFO:tensorflow:Restoring parameters from /tmp/_retrain_checkpoint
+INFO:tensorflow:Froze 378 variables.
+INFO:tensorflow:Converted 378 variables to const ops.
+```
 
-
-
+## Test retrained model on new image
+The test image is already included in the `basic-shapes` directory.
+Run the `label_image.py` script.
+#### Results: ball.jpg
+```
+root@5c70540022ff:~# python /basic-shapes/label_image.py --graph=/basic-shapes/retrained_graph.pb --labels=/basic-shapes/retrained_labels.txt --output_layer=final_result --image=/basic-shapes/ball.jpg --input_layer=Placeholder
+```
+```
+sphere 0.69433737
+cube 0.1402661
+cone 0.059887767
+cylinder 0.045302395
+pyramid 0.039126154
+```
+### Results: luxor.jpg
+```
+root@5c70540022ff:~# python /basic-shapes/label_image.py --graph=/basic-shapes/retrained_graph.pb --labels=/basic-shapes/retrained_labels.txt --output_layer=final_result --image=/basic-shapes/luxor.jpg --input_layer=Placeholder
+```
+```
+pyramid 0.65736824
+cone 0.15799783
+cube 0.08429224
+sphere 0.05765312
+rectangular prism 0.02946632
+```
+#### Results: rubrix.jpg
+```
+root@a24f979cd6ab:/# python /basic-shapes/label_image.py --graph=/basic-shapes/retrained_graph.pb --labels=/basic-shapes/retrained_labels.txt --output_layer=final_result --image=/basic-shapes/rubrix.jpg --input_layer=Placeholder
+```
+```
+cube 0.9530824
+rectangular prism 0.016766412
+cylinder 0.012242676
+cone 0.011794928
+sphere 0.003067277
+```
 
 - - -
 - - -
 #### Disclaimer
 Through my journey in trying to get this image classifier to work, a combination of the following works was necessary.
+[Tensorflow](https://www.tensorflow.org/hub/tutorials/image_retraining) image retraining tutorials.
 [Codelabs](https://codelabs.developers.google.com/codelabs/tensorflow-for-poets/#0) that classified flowers.
 [Siraj](https://www.youtube.com/watch?v=QfNvhPx5Px8&vl=en) that classified darth vader.
 [TransferLearnColab](https://github.com/EN10/TransferLearnColab) that classified flowers as well.

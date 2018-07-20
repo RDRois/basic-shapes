@@ -1,0 +1,6 @@
+cone
+cube
+cylinder
+pyramid
+rectangular prism
+sphere
