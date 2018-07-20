@@ -204,6 +204,7 @@ Run the `label_image.py` script.
 <p align="center">
 <img src="https://github.com/RDRois/basic-shapes/blob/master/ball.jpg" width="300px" >
 </p>
+
 ```
 root@5c70540022ff:~# python /basic-shapes/label_image.py --graph=/basic-shapes/retrained_graph.pb --labels=/basic-shapes/retrained_labels.txt --output_layer=final_result --image=/basic-shapes/ball.jpg --input_layer=Placeholder
 ```
@@ -214,10 +215,11 @@ cone 0.059887767
 cylinder 0.045302395
 pyramid 0.039126154
 ```
-### Results: luxor.jpg
+#### Results: luxor.jpg
 <p align="center">
 <img src="https://github.com/RDRois/basic-shapes/blob/master/luxor.jpg" width="300px" >
 </p>
+
 ```
 root@5c70540022ff:~# python /basic-shapes/label_image.py --graph=/basic-shapes/retrained_graph.pb --labels=/basic-shapes/retrained_labels.txt --output_layer=final_result --image=/basic-shapes/luxor.jpg --input_layer=Placeholder
 ```
@@ -232,6 +234,7 @@ rectangular prism 0.02946632
 <p align="center">
 <img src="https://github.com/RDRois/basic-shapes/blob/master/rubrix.jpg" width="300px" >
 </p>
+
 ```
 root@a24f979cd6ab:/# python /basic-shapes/label_image.py --graph=/basic-shapes/retrained_graph.pb --labels=/basic-shapes/retrained_labels.txt --output_layer=final_result --image=/basic-shapes/rubrix.jpg --input_layer=Placeholder
 ```
