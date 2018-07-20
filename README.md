@@ -158,7 +158,7 @@ If the script seemed to have run smoothly, yet these items did not appear, it is
 ## Label image with retrained model
 This last part is about taking the retrained model and applying it to a new image.
 <p align="center">
-<img src="https://raw.githubusercontent.com/RDRois/basic-shapes/ball.jpg" width="600px" >
+<img src="https://github.com/RDRois/basic-shapes/blob/master/ball.jpg" width="600px" >
 </p>
 ```
 root@5c70540022ff:~# python /basic-shapes/label_image.py --graph=/basic-shapes/retrained_graph.pb --labels=/basic-shapes/retrained_labels.txt --output_layer=final_result --image=/basic-shapes/ball.jpg --input_layer=Placeholder
@@ -174,29 +174,13 @@ The output should look something like this.
 
 - - -
 - - -
-
+#### Disclaimer
+Through my journey in trying to get this image classifier to work, a combination of the following works was necessary.
+[Codelabs](https://codelabs.developers.google.com/codelabs/tensorflow-for-poets/#0) that classified flowers.
+[Siraj](https://www.youtube.com/watch?v=QfNvhPx5Px8&vl=en) that classified darth vader.
+[TransferLearnColab](https://github.com/EN10/TransferLearnColab) that classified flowers as well.
+[rhnvrm](https://github.com/rhnvrm/galaxy-image-classifier-tensorflow) that classified elliptical vs spiral galaxies.
 
 <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
-
-```
-
-python /star-wars/retrain.py --bottleneck_dir=/star-wars/bottlenecks --how_many_training_steps 500 --model_dir=/star-wars/inception --output_graph=/star-wars/retrained_graph.pb --output_labels=/star-wars/retrained_labels.txt --image_dir=/star-wars/force_users
-
-python /star-wars/label_image.py --graph=/star-wars/retrained_graph.pb --labels=/star-wars/retrained_labels.txt --output_layer=final_result --image=/star-wars/vader_comic.jpg --input_layer=Placeholder
-
-bbvader
-quigon 0.51467746
-vader 0.4853225
-
-
-plush
-quigon 0.8927456
-vader 0.10725444
-
-vader_comic.jpg
-vader 0.9360795
-quigon 0.06392048
-```
-
 
 
