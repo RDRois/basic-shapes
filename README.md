@@ -256,15 +256,15 @@ sphere 0.003067277
 - - -
 #### Disclaimer
 Through my journey in trying to get this image classifier to work, a combination of the following works was necessary.
-[Tensorflow](https://www.tensorflow.org/hub/tutorials/image_retraining) image retraining tutorials.
-[Codelabs](https://codelabs.developers.google.com/codelabs/tensorflow-for-poets/#0) that classified flowers.
-[Siraj](https://www.youtube.com/watch?v=QfNvhPx5Px8&vl=en) that classified darth vader.
-[TransferLearnColab](https://github.com/EN10/TransferLearnColab) that classified flowers as well.
-[rhnvrm](https://github.com/rhnvrm/galaxy-image-classifier-tensorflow) that classified elliptical vs spiral galaxies.
+[Tensorflow](https://www.tensorflow.org/hub/tutorials/image_retraining) image retraining tutorials.<br>
+[Codelabs](https://codelabs.developers.google.com/codelabs/tensorflow-for-poets/#0) that classified flowers.<br>
+[Siraj](https://www.youtube.com/watch?v=QfNvhPx5Px8&vl=en) that classified darth vader.<br>
+[TransferLearnColab](https://github.com/EN10/TransferLearnColab) that classified flowers as well.<br>
+[rhnvrm](https://github.com/rhnvrm/galaxy-image-classifier-tensorflow) that classified elliptical vs spiral galaxies.<br>
 
 <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
 
 - - -
-#### ¯\_(ツ)_/¯
+#### ¯\\_(ツ)_/¯
 If you like this repository and would like to donate, <br>
 please drop a nugget at the following Bitcoin address`3BVswsdQCAHcJW1k9syji4nuGHjwcAaaWt`
