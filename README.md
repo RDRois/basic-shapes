@@ -1,7 +1,6 @@
 # Tensorflow - Image Classification
 
-Follow along as we use Tensorflow to demonstrate image classification of multiple classes. We will be using the Inception model, trained on academic benchmarks, to distinguish between 6 shapes, cube, sphere, rectangular prism, pyramid, cylinder, and cone.
-
+Follow along as we use Tensorflow to demonstrate image classification of multiple classes. We will be using the Inception model, trained on academic benchmarks, to distinguish between 6 shapes, cube, sphere, rectangular prism, pyramid, cylinder, and cone. I've included all the files that would come out of a retrain so if you want you can skip all the way to the "Label image with retrained model" section.
 
 - - -
 
