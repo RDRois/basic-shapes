@@ -2,14 +2,19 @@
 
 Follow along as we use Tensorflow to demonstrate image classification of multiple classes. We will be using the Inception model, trained on academic benchmarks, to distinguish between 6 shapes, cube, sphere, rectangular prism, pyramid, cylinder, and cone.
 
+
+- - -
+
 ## My system
+```
 Operating system:  MacOS Sierra
 System version:    10.12.3 (16D32)
 Processors:        2.7 GHz Intel Core i5
 Memory:            8 GB 1867 Mhz DDR3
 Graphics:          Intel Iris Graphics 6100 1536 MB
-
+```
 ## Python and Docker versions
+```
 Python 2.7.14
 Docker Client:
  Version:      18.03.1-ce
@@ -18,7 +23,7 @@ Docker Client:
  Git commit:   9ee9f40
  Built:        Thu Apr 26 07:13:02 2018
  OS/Arch:      darwin/amd64
-
+```
 ## Docker Quickstart Terminal: Installation & Check
 We will use the Docker Quickstart terminal, that you can download from the [Docker toolbox](https://docs.docker.com/toolbox/toolbox_install_mac/#step-1-check-your-version). 
 
@@ -65,7 +70,7 @@ For more examples and ideas, visit:
 *You can also check the docker version by typing the `docker version` command.*
 
 ## Docker Quickstart Terminal: Login
-You'll want to login to be able to push and pull images from Docker Hub <br>
+You'll want to login to be able to push and pull images from Docker Hub.<br>
 This is important!
 ```
 RhoamRois:tf_files Home$ docker login
@@ -77,9 +82,9 @@ Login Succeeded
 
 ## Tensorflow Docker image setup
 In the Docker Quickstart Terminal, you'll need to download the Tensorflow Docker image and enter a shell within it. 
-1. Type `docker run -it tensorflow/tensorflow:latest-devel` and press RETURN.
-You will know it has succeeded when you automatically enter a shell within the image container. 
-2. Check to see if your tensorflow is updated
+1. Type `docker run -it tensorflow/tensorflow:latest-devel` and press RETURN.<br>
+You will know it has succeeded when you automatically enter a shell within the image container. You'll also see each new line starting with `root@` followed by 12 alpha-numeric characters. 
+2. Check to see if your tensorflow is updated.
 ```
 RhoamRois:tf_files Home$ docker run -it tensorflow/tensorflow:latest-devel
 root@13bae75b699f:~# cd /tensorflow/
@@ -93,9 +98,7 @@ To exit the container and return to your local terminal, type the `exit` command
 In a desired local directory, clone the repository to get the training shape images:
 ```
 RhoamRois:tf_files Home$ git clone https://github.com/rdrois/basic-shapes
-
 ```
-
 #### 3 major items in repository
 * shapes: This directory holds 6 directories, each with images with their respective shape. The shapes are: cube, sphere, rectangular prism, pyramid, cylinder, and cone.
 * retrain.py: This retrain script is used to create a model distinguishes between the shapes.
@@ -127,6 +130,7 @@ root@5c70540022ff:~# ls /tf_files/
 ls: cannot access '/tf_files/': No such file or directory
 root@5c70540022ff:~# ls /basic-shapes/
 LICENSE  label_image.py  retrain.py  shapes
+LICENSE  README.md  ball.jpg  label_image.py  luxor.jpg  retrain.py  retrained_graph.pb  rubrix.jpg  shapes
 root@5c70540022ff:~# 
 ```
 
@@ -153,8 +157,8 @@ The three items that should appear in the `basic-shapes` directory are:
 * bottlenecks directory
 * retrained_graph.ph
 * retrained_labels.txt
-If the script seemed to have run smoothly, yet these items did not appear, it is possible that there was directory mishap when executing the python command when running the script.
 
+If the script seemed to have run smoothly, yet these items did not appear, it is possible that there was directory mishap when executing the python command when running the script.
 
 The output starts with looking for each category, then initialized InceptionV3.
 The major actions taken by the script are:
@@ -197,8 +201,8 @@ INFO:tensorflow:Converted 378 variables to const ops.
 
 ## Label image with retrained model
 This last part is about taking the retrained model and applying it to a new image.
-The test image is already included in the `basic-shapes` directory.
-Run the `label_image.py` script.
+The test images are already included in the `basic-shapes` directory.
+Run the `label_image.py` script and the top 5 category fractions will be shown.
 
 #### Results: ball.jpg
 <p align="center">
@@ -246,6 +250,8 @@ cone 0.011794928
 sphere 0.003067277
 ```
 
+## That's all folks!
+
 - - -
 - - -
 #### Disclaimer
@@ -258,4 +264,7 @@ Through my journey in trying to get this image classifier to work, a combination
 
 <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
 
-
+- - -
+#### ¯\_(ツ)_/¯
+If you like this repository and would like to donate, <br>
+please drop a nugget at the following Bitcoin address`3BVswsdQCAHcJW1k9syji4nuGHjwcAaaWt`
