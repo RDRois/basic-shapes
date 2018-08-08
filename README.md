@@ -119,6 +119,8 @@ To do this, we need to use the `-v` argument in the docker command to allow us t
 RhoamRois:tf_files Home$ docker run -it -v ~/Documents/tf_files/basic-shapes:/basic-shapes tensorflow/tensorflow:latest-devel
 root@5c70540022ff:~# 
 ```
+** *What if I want my images to be on an external harddrive? Check bottom of README!* **
+
 
 #### Check is map works
 After you've mapped your directory to Docker, you can check if the container can list directory contents.
@@ -253,6 +255,51 @@ sphere 0.003067277
 
 - - -
 - - -
+#### Use external harddrive as source for training images
+Basically, you'll have to remount your harddrive using ```-mountPoint``` to be able to add it to the Docker container.
+1. Enter the following command to check all the mounted drives on your machine.
+```
+Home$ mount
+/dev/disk1 on / (hfs, local, journaled)
+devfs on /dev (devfs, local, nobrowse)
+map -hosts on /net (autofs, nosuid, automounted, nobrowse)
+map auto_home on /home (autofs, automounted, nobrowse)
+/dev/disk2s1 on /Volumes/DATADRIVE (msdos, local, nodev, nosuid, noowners)
+```
+For me, the drive is mounted as ```/dev/disk2s1```. You'll have to replace this.
+
+2. Unmount the drive.
+```
+Home$ diskutil unmount /dev/disk2s1
+Volume DATADRIVE on disk2s1 unmounted
+```
+3. Create a directory that will act as the mount point for the external drive. 
+```
+Home$ sudo mkdir -p ~/mnt/DATADRIVE
+```
+4. Mount the drive to the directory
+
+```
+Home$ sudo diskutil mount -mountPoint ~/mnt/DATADRIVE /dev/disk2s1
+Volume BACKUPFILES on /dev/disk2s1 mounted
+```
+
+Now that you have your external harddrive mounted, some of the commmands for running the retrain will have to change.
+Images can be accessed from: ```/mnt/DATADRIVE/data/shapes```.
+
+Mapping the docker container will have an additional input.
+```
+RhoamRois:tf_files Home$ docker run -it -v ~/Documents/tf_files/basic-shapes:/basic-shapes -v ~/mnt/DATADRIVE/data/shapes:/shapes tensorflow/tensorflow:latest-devel
+```
+
+The only thing that will change in the retraining script is ```--image_dir=/shapes```
+```
+root@5c70540022ff:~# python /basic-shapes/retrain.py --bottleneck_dir=/basic-shapes/bottlenecks --how_many_training_steps 500 --model_dir=/basic-shapes/inception --output_graph=/basic-shapes/retrained_graph.pb --output_labels=/basic-shapes/retrained_labels.txt --image_dir=/shapes
+```
+
+All done! Now you don't have to store all your images on your local computer.
+- - -
+- - -
 #### Disclaimer
 Through my journey in trying to get this image classifier to work, a combination of the following works was necessary.
 [Tensorflow](https://www.tensorflow.org/hub/tutorials/image_retraining) image retraining tutorials.<br>
@@ -260,6 +307,7 @@ Through my journey in trying to get this image classifier to work, a combination
 [Siraj](https://www.youtube.com/watch?v=QfNvhPx5Px8&vl=en) that classified darth vader.<br>
 [TransferLearnColab](https://github.com/EN10/TransferLearnColab) that classified flowers as well.<br>
 [rhnvrm](https://github.com/rhnvrm/galaxy-image-classifier-tensorflow) that classified elliptical vs spiral galaxies.<br>
+[MountPoint setup](https://docs.cancergenomicscloud.org/docs/mount-a-usb-drive-in-a-docker-container) for MacOSX.<br>
 
 <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
 
