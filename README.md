@@ -281,11 +281,11 @@ Home$ sudo mkdir -p ~/mnt/DATADRIVE
 
 ```
 Home$ sudo diskutil mount -mountPoint ~/mnt/DATADRIVE /dev/disk2s1
-Volume BACKUPFILES on /dev/disk2s1 mounted
+Volume DATADRIVE on /dev/disk2s1 mounted
 ```
 
 Now that you have your external harddrive mounted, some of the commmands for running the retrain will have to change.
-Images can be accessed from: ```/mnt/DATADRIVE/data/shapes```.
+Images can be accessed from: ```~/mnt/DATADRIVE/data/shapes```.
 
 Mapping the docker container will have an additional input.
 ```
